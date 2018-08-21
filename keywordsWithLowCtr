@@ -1,0 +1,60 @@
+function main() {
+  
+  var campaigns = AdWordsApp.campaigns()
+  .withCondition("Cost > 300")
+  .forDateRange("LAST_7_DAYS")
+  .get()
+  Logger.log(campaigns.totalNumEntities())
+  var campClicks = 0
+  var campImpr = 0
+  
+  var groupClicks = 0
+  var groupImpr = 0
+  
+  // campaigns loop
+  while(campaigns.hasNext()) {
+    // loop commands
+    var camp = campaigns.next()
+      campClicks = campClicks + camp.getStatsFor("LAST_7_DAYS").getClicks()
+    	campImpr = campImpr + camp.getStatsFor("LAST_7_DAYS").getImpressions()
+    	    
+    var groups = camp.adGroups() // keywords()
+    .withCondition("Cost > 100")
+    .forDateRange("LAST_7_DAYS")
+    .get()
+     //
+    while(groups.hasNext()){
+      var adGroup = groups.next()
+      groupClicks = groupClicks + adGroup.getStatsFor("LAST_7_DAYS").getClicks()
+      groupImpr = groupImpr + adGroup.getStatsFor("LAST_7_DAYS").getImpressions()
+      
+      // Розраховуємо CTR для групи і зберігаємо його в окремій змінній, яку називаємо ctr
+      var ctr = groupClicks / groupImpr
+      Logger.log("AdGroup CTR is %s", ctr)
+  
+    var keys = camp.keywords()
+    .withCondition("Ctr < " + ctr) // В якості параметру використовуємо фікосване текстове значення "CTR < ", до якого додаємо значення  змінної ctr
+    .forDateRange("LAST_7_DAYS")
+    .get()
+     
+ 	while (keys.hasNext()) {
+  	var keyw = keys.next();
+  	Logger.log("Keywords with CTR < " + ctr + ' ' + keyw.getText())
+ }
+
+     Logger.log("group name " 
+                 + adGroup.getName() + " of " + camp.getName())
+    }
+
+    Logger.log("Campaign with cost > 300 " + camp.getName()) 
+    
+    }
+   
+  // end of campaigns loop
+  
+  Logger.log("total campaigns clicks " + campClicks)
+  Logger.log("total campaigns impressions " + campImpr)
+   
+  Logger.log("total groups clicks " + groupClicks)
+  Logger.log("total campaigns impressions " + groupImpr)
+  }

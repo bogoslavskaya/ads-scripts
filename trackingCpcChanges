@@ -1,4 +1,14 @@
 function main() {
+
+    function cpcType (value) {
+    if (value <0.15 && value > -0.15) {
+    return ("stable") 
+  } if (value >0.15){
+    return ("cpc up")
+  } if (value <-0.15){
+    return ("cpc down")
+  }
+ }
   
   var tz = AdWordsApp.currentAccount().getTimeZone()
   var endDate = new Date();
@@ -34,31 +44,22 @@ function main() {
    
   var change = campCpc7 / campCpc14 - 1
   
-  function cpcType () {
-    if (change <0.15 && change > -0.15) {
-    return ("stable") 
-  } if (change >0.15){
-    return ("cpc up")
-  } if (change <-0.15){
-    return ("cpc down")
-  }
- }
+
+  camp.applyLabel(cpcType(change))
   Logger.log(cpcType())
 
-/* function cpcTypeS () {
+/* function cpcTypeS () {   //вариант с тремя функциями
     if (change <0.15 && change > -0.15) {
     return ("stable") 
     } 
   }
  Logger.log(cpcTypeS())
- 
  function cpcTypeD () {
     if (change <-0.15) {
     return ("cpc down") 
     } 
   }
  Logger.log(cpcTypeD())
- 
  function cpcTypeU(){
  if (change >0.15){
  return ("cpc up")

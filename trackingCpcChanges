@@ -46,7 +46,7 @@ function main() {
   
 
   camp.applyLabel(cpcType(change))
-  Logger.log(cpcType())
+   Logger.log(cpcType(change))
 
 /* function cpcTypeS () {   //вариант с тремя функциями
     if (change <0.15 && change > -0.15) {

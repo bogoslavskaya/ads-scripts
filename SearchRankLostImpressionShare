@@ -2,7 +2,7 @@ function main() {
   var report = AdWordsApp.report(
     "SELECT CampaignName, SearchRankLostImpressionShare " +
     "FROM   CAMPAIGN_PERFORMANCE_REPORT " +
-    "WHERE SearchRankLostImpressionShare < 10 " + 
+    "WHERE SearchRankLostImpressionShare > 0.1 " + 
     "DURING LAST_30_DAYS"
   )
 

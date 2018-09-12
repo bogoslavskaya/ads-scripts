@@ -1,0 +1,16 @@
+function main() {
+var keywordReport = AdWordsApp.report(
+'SELECT Criteria, KeywordMatchType, AveragePosition ' +
+'FROM KEYWORDS_PERFORMANCE_REPORT ' +
+'WHERE KeywordMatchType = PHRASE AND AveragePosition > 2.3 ' +
+'DURING YESTERDAY');
+
+var rows = keywordReport.rows();
+
+while (rows.hasNext()) {
+var row = rows.next();
+
+Logger.log(row.Criteria + ' - ' + row.KeywordMatchType + ' - ' + row.AveragePosition);
+}
+
+}

@@ -1,0 +1,18 @@
+function main() {
+  var report = AdWordsApp.report(
+    "SELECT CampaignName, Conversions, Clicks " +
+    "FROM   CAMPAIGN_PERFORMANCE_REPORT " +
+    "WHERE  Clicks > 120 AND Conversions < 1 " + 
+    "DURING LAST_30_DAYS"
+  )
+
+  var rows = report.rows();
+ 
+  while (rows.hasNext()) {
+    var row = rows.next();
+    var CampaignName = row["CampaignName"];
+    var Clicks = row["Clicks"];
+      
+ Logger.log(row.CampaignName + ' - ' + row.Clicks + ' - ' + row.Conversions);
+  }
+}

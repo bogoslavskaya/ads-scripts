@@ -1,0 +1,16 @@
+function main() {
+var keywordReport = AdWordsApp.report(
+'SELECT Criteria, KeywordMatchType, AveragePosition, Cost, QualityScore ' +
+'FROM KEYWORDS_PERFORMANCE_REPORT ' +
+'WHERE QualityScore < 6 AND Cost > 40000000 ' +
+'DURING LAST_30_DAYS');
+
+var rows = keywordReport.rows();
+
+while (rows.hasNext()) {
+var row = rows.next();
+
+Logger.log(row.Criteria + ' - ' + row.QualityScore + ' - ' + row.Cost);
+}
+
+}

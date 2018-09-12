@@ -3,7 +3,7 @@ var keywordReport = AdWordsApp.report(
 'SELECT Criteria, KeywordMatchType, AveragePosition ' +
 'FROM KEYWORDS_PERFORMANCE_REPORT ' +
 'WHERE KeywordMatchType = PHRASE AND AveragePosition > 2.3 ' +
-'DURING YESTERDAY');
+'DURING LAST_30_DAYS');
 
 var rows = keywordReport.rows();
 

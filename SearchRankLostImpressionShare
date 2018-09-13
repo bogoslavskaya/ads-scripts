@@ -10,8 +10,6 @@ function main() {
  
   while (rows.hasNext()) {
     var row = rows.next();
-    var CampaignName = row["CampaignName"];
-    var SearchRankLostImpressionShare = row["SearchRankLostImpressionShare"];
       
  Logger.log(row.CampaignName + ' - ' + row.SearchRankLostImpressionShare);
   }

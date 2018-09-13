@@ -3,3 +3,4 @@
 3. QualityScoreandCost - ключи с QS<6 и тратами больше 40 грн
 4.clicks>120conv<1reports - кампании, у которых > 120 кликов и 0 конверсий
 5.matchtypeAndAvpos - ключи с фразовым соответствием и ср.позицией больше 2.3
+6. SearchRankLostImpressionShare - кампании, у который более 10% потеряных показов по ранку

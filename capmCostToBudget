@@ -1,0 +1,30 @@
+function main (){
+  var report = AdWordsApp.report(
+      'SELECT Clicks, Impressions, Cost ' +
+      'FROM ACCOUNT_PERFORMANCE_REPORT ' +
+      'WHERE  Cost > 0 ' +
+      'DURING LAST_30_DAYS');
+
+  var rows = report.rows();
+  while (rows.hasNext()) {
+    var row = rows.next();
+    var accCost = row['Cost'];
+    Logger.log(accCost);
+    }   
+  var campreport = AdWordsApp.report(
+    'SELECT CampaignName, Cost ' +
+    'FROM CAMPAIGN_PERFORMANCE_REPORT ' +
+    'WHERE Cost > 0 ' +
+    'DURING LAST_30_DAYS');
+  
+  var rows = campreport.rows();
+  while (rows.hasNext()) {
+    var row = rows.next();
+    var campName = row['CampaignName'];
+    var cost = row['Cost'];
+    
+    Logger.log(campName + " - " + cost);
+    }
+ 
+  
+}

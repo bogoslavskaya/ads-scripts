@@ -1,4 +1,6 @@
 function main (){
+  var costs = [];
+  var accCost = 0;
   var report = AdWordsApp.report(
       'SELECT Clicks, Impressions, Cost ' +
       'FROM ACCOUNT_PERFORMANCE_REPORT ' +
@@ -24,7 +26,10 @@ function main (){
     var cost = row['Cost'];
     
     Logger.log(campName + " - " + cost);
+    costs.push(row['Cost'])
     }
- 
+ Logger.log(costs.join())
+
+
   
 }
